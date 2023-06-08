@@ -1,7 +1,10 @@
 package fpt.edu.entity;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,7 +24,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -34,37 +39,34 @@ public class SanPhamChiTiet implements Serializable{
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "kich_co_id")
+	@JoinColumn(name = "kich_co_id", nullable = false)
 	private KichCo kichCo;
 	
 	@ManyToOne
-	@JoinColumn(name = "mau_sac_id")
+	@JoinColumn(name = "mau_sac_id", nullable = false)
 	private MauSac mauSac;
 	
 	@ManyToOne
-	@JoinColumn(name = "san_pham_id")
+	@JoinColumn(name = "san_pham_id", nullable = false)
 	private SanPham sanPham;
 	
 	@OneToMany(mappedBy = "sanPhamChiTiet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<HinhAnh> hinhAnhs;
+	private List<HinhAnh> hinhAnhs = new ArrayList<>();
 	
 	@Column
 	private int soLuong;
 	
-	@Column(columnDefinition = "nvarchar(512)", nullable = true)
-	private String moTa;
+	@OneToMany(mappedBy = "sanPhamChiTiet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<HoaDonChiTiet> hoaDonChiTiets;
 	
 	@OneToMany(mappedBy = "sanPhamChiTiet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<HoaDonChiTiet> hoaDonChiTiets;
-	
-	@OneToMany(mappedBy = "sanPhamChiTiet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<DoiHangChiTiet> doiHangChiTiets;
+	private List<DoiHangChiTiet> doiHangChiTiets;
 	
 	@Column
 	private Boolean coHienThi;
 	
 	@Column
-	private Boolean deleted;
+	private Boolean daXoa;
 	
 	@Column(name = "nguoi_tao", columnDefinition = "nvarchar(50)")
 	private String nguoiTao;

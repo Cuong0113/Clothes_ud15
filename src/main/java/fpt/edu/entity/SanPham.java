@@ -26,49 +26,51 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "san_pham")
+@ToString
 public class SanPham implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "kieu_dang_id")
+	@JoinColumn(name = "kieu_dang_id", nullable = false)
 	private KieuDang kieuDang;
 	
 	@ManyToOne
-	@JoinColumn(name = "chat_lieu_id")
+	@JoinColumn(name = "chat_lieu_id", nullable = false)
 	private ChatLieu chatLieu;
 	
 	@ManyToOne
-	@JoinColumn(name = "loai_hang_id")
+	@JoinColumn(name = "loai_hang_id", nullable = false)
 	private LoaiHang loaiHang;
 	
 	@ManyToOne
-	@JoinColumn(name = "phong_cach_id")
+	@JoinColumn(name = "phong_cach_id", nullable = false)
 	private PhongCach phongCach;
+	
+	@Column
+	private Boolean daXoa;
+	
+	@OneToMany(mappedBy = "sanPham",cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SanPhamChiTiet> sanPhamChiTiets = new ArrayList<>();
 	
 	@Column(columnDefinition = "nvarchar(256)", nullable = false)
 	private String tenSanPham;
 	
+	@Column(columnDefinition = "nvarchar(512)", nullable = true)
+	private String moTa;
+	
 	@Column(precision = 10)
 	private BigDecimal giaHienHanh;
-	
-	@Column(name = "nguoi_tao", columnDefinition = "nvarchar(50)")
-	private String nguoiTao;
-	
-	@Column(name = "ngay_tao")
-	private Date ngayTao;
-	
-	@Column(name = "nguoi_chinh_sua", columnDefinition = "nvarchar(50)")
-	private String nguoiChinhSua;
-	
-	@Column(name = "ngay_chinh_sua")
-	private Date ngayChinhSua;
 }

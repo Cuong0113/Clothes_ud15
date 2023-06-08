@@ -1,6 +1,7 @@
 package fpt.edu.entity;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -19,8 +20,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,6 +39,6 @@ public class MauSac implements Serializable{
 	@Column(columnDefinition = "nvarchar(255) not null")
 	private String tenMauSac;
 	
-	@Column(name = "trang_thai")
-	private short trangThai;
+	@Column
+	private Boolean daXoa;
 }

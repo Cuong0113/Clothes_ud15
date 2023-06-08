@@ -15,7 +15,9 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -33,6 +35,6 @@ public class KichCo implements Serializable{
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String tenKichCo;
 	
-	@Column(name = "trang_thai")
-	private short trangThai;
+	@Column
+	private Boolean daXoa;
 }

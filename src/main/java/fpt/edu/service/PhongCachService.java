@@ -1,5 +1,17 @@
 package fpt.edu.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import fpt.edu.entity.ChatLieu;
+import fpt.edu.entity.PhongCach;
+
 public interface PhongCachService {
+
+	List<PhongCach> selectAllPhongCachExist();
+
+	Optional<PhongCach> findById(Long id);
+
+	<S extends PhongCach> S save(S entity);
 
 }

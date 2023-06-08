@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Data
 @AllArgsConstructor
@@ -31,8 +33,8 @@ public class ChatLieu implements Serializable{
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String tenChatLieu;
 	
-	@Column(name = "trang_thai")
-	private short trangThai;
+	@Column(name = "da_xoa")
+	private Boolean daXoa;
 	
 	@OneToMany(mappedBy = "chatLieu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<SanPham> sanPhams;

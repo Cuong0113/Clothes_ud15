@@ -19,7 +19,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +38,7 @@ public class PhongCach implements Serializable{
 		
 	@OneToMany(mappedBy = "phongCach", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<SanPham> sanPhams;
+	
+	@Column
+	private Boolean daXoa;
 }

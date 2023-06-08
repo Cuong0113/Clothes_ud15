@@ -19,7 +19,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -34,8 +37,8 @@ public class KieuDang implements Serializable{
 	@Column(name = "ten_kieu_dang",columnDefinition = "nvarchar(256) not null")
 	private String tenKieuDang;
 	
-	@Column(name = "trang_thai")
-	private short trangThai;
+	@Column
+	private Boolean daXoa;
 	
 	@OneToMany(mappedBy = "kieuDang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<SanPham> sanPhams;

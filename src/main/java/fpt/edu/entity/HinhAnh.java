@@ -2,6 +2,7 @@ package fpt.edu.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +15,12 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -37,7 +41,7 @@ public class HinhAnh implements Serializable{
 	private Boolean isAnhChinh;
 	
 	@Column(name = "co_hien_thi")
-	private short coHienThi;
+	private Boolean coHienThi;
 	
 	@Column(name = "nguoi_tao", columnDefinition = "nvarchar(50) not null")
 	private String nguoiTao;

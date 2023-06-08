@@ -19,7 +19,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -37,7 +39,7 @@ public class LoaiHang implements Serializable{
 	@OneToMany(mappedBy = "loaiHang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<SanPham> sanPhams;
 	
-	@Column(name = "trang_thai")
-	private Boolean trangThai;
+	@Column
+	private Boolean daXoa;
 	
 }
